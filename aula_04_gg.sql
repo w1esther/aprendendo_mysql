@@ -15,3 +15,10 @@ alter table pessoas
 add id int not null auto_increment primary key;
 
 describe pessoas;
+
+insert into pessoas
+(nome, nascimento, sexo, peso, altura, nacionalidade)
+values
+('Esther', '2009-07-17', 'F', '52','1.57', 'Brasil');
+
+select * from pessoas;
