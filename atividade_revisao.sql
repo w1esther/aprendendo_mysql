@@ -215,3 +215,72 @@ where matricula = '2026004';
 update evento 
 set vagas = vagas + 20
 where cod_evento = 105;
+
+-- 15
+
+update inscricao 
+set status_inscricao = 'Confirmada'
+where matricula = '20260002' and cod_evento = 104;
+
+-- 16
+
+select status_evento 
+from evento 
+where cod_evento = 106;
+
+update evento 
+set status_evento = 'Encerrado'
+where cod_evento = 106;
+
+-- REMOÇÃO DE REGISTROS COM DELETE
+
+-- 17
+
+delete from inscricao
+where matricula = '2026008';
+
+select *
+from inscricao;
+
+-- 18
+
+delete from evento
+where cod_evento = 106;
+
+select *
+from evento;
+
+-- 19
+
+delete from local_evento
+where cod_local = 1;
+-- O MySQL impede a operação porque cod_local está sendo usado como
+-- chave estrangeira em outra entidade e, portanto, não pode simplesmente
+-- ser excluído enquanto estiver sendo usado como chave estrangeira de
+-- outra entidade.
+
+-- 20
+
+-- 1) apagar as incrições associadas àquele evento
+-- 2) apagar o evento. EX:
+
+select matricula, cod_evento, data_inscricao, status_inscricao 
+from inscricao;
+
+delete from inscricao
+where cod_evento = 103;
+
+delete from evento
+where cod_evento = 103;
+
+-- CONSULTAS COM INNER JOIN, LEFT JOIN E RIGHT JOIN
+
+-- 21 
+
+select evento.titulo, aluno.nome
+from inscricao
+inner join evento on inscricao.cod_evento = evento.cod_evento
+inner join aluno on inscricao.matricula = aluno.matricula
+order by titulo asc, aluno.nome asc;
+
+
