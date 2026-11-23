@@ -283,4 +283,48 @@ inner join evento on inscricao.cod_evento = evento.cod_evento
 inner join aluno on inscricao.matricula = aluno.matricula
 order by titulo asc, aluno.nome asc;
 
+-- 22
 
+select evento.titulo, evento.data_evento, local_evento.nome
+from local_evento
+inner join evento on local_evento.cod_local = evento.cod_local;
+
+-- 23
+
+select aluno.nome, inscricao.status_inscricao
+from aluno
+left join inscricao on aluno.matricula = inscricao.matricula;
+
+-- 24
+
+select aluno.nome, inscricao.status_inscricao
+from aluno
+left join inscricao on aluno.matricula = inscricao.matricula
+where status_inscricao is null;
+
+-- 25
+
+select evento.titulo, inscricao.matricula
+from evento 
+right join inscricao on evento.cod_evento = inscricao.cod_evento;
+
+-- 26
+
+select evento.titulo, inscricao.matricula
+from inscricao 
+left join evento on inscricao.cod_evento = evento.cod_evento;
+
+-- 27
+
+select aluno.nome, evento.titulo, inscricao.status_inscricao, curso.nome
+from inscricao
+inner join aluno on inscricao.matricula = aluno.matricula
+inner join evento on inscricao.cod_evento = evento.cod_evento 
+inner join curso on aluno.curso_id = curso.curso_id
+where status_inscricao = 'Confirmada';
+
+-- 28
+
+select curso.nome, aluno.nome
+from aluno 
+left join curso on aluno.curso_id = aluno.curso_id;
